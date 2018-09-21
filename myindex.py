@@ -4,6 +4,8 @@ import constants as CONST
 from elasticsearch import Elasticsearch
 import sys
 import json
+
+
 def parse_html(file):
     f = gzip.open(file)
     number_of_doc = 0
@@ -18,16 +20,21 @@ def parse_html(file):
     print()
     print(number_of_doc, 'documents found..')
     return res
-def index_doc():
-    myid = doc['url']
-def parse_html_2(file):
-    res = []
-    number_of_doc = 0
-    for root, dirs, files in os.walk(file):
-        for name in files:
-            file_name = os.path.join(root, name)
-            print(file_name)
-    return res
+
+
+def index_doc(doc):
+    myid = doc['Url']
+    res = es.index(index=index, doc_type=doctype, id=myid, body=doc)
+
+
+# def parse_html_2(file):
+#     res = []
+#     number_of_doc = 0
+#     for root, dirs, files in os.walk(file):
+#         for name in files:
+#             file_name = os.path.join(root, name)
+#             print(file_name)
+#     return res
 
 # parse_html_2(CONST.PATH_PROJECT+'\html\html')
 
